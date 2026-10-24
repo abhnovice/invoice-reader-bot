@@ -1,22 +1,20 @@
- ## Title of Project
-
- ### One sentence explaining what the project does and why it matters.
+ ## Invoice Reader Bot
+ ### This is used to batch read invoices generated at SKU-Del. Date-Price level to analyze the possibility of claims
 
  ### 1. Business Problem
-What supply chain problem does this project address? 
+In a supply chain, there could be possibility of claims related to logistics, pricing or a multitude of other reasons and the high volume of invoice processing in demand driven industries makes it imperative to keep a close track on this flow and address discrepancies asap to mitigate or reduce financial damage.
 
   #### 2. Context and Assumptions
 
-What situation is being studied?
+A situation of being able to digitize invoices in a batch and compare it with the real prices.
 
-What assumptions have been made? 
+a. Pricing dataset quality
+b. Accuracy of Invoices
+c. Access to tech stack
  
  ### 3. Data 
- 
-- Where did the data come from? 
-- What does it contain? 
-- Is it real, public, synthetic or modified? 
-- What are its limitations? 
+ It is a synthetic dataset taken from kaggle: 
+ https://www.kaggle.com/datasets/devp1866/high-quality-ocr-ready-invoice-pdfs?select=Batch+1
  
  ### 4. Supply Chain Logic 
  
