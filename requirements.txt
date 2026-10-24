@@ -1,0 +1,23 @@
+# Data handling
+pandas
+numpy
+openpyxl
+
+# Analysis
+scipy
+scikit-learn
+
+# Charts
+matplotlib
+seaborn
+plotly
+
+# Notebooks
+jupyterlab
+ipykernel
+
+# Environment variables
+python-dotenv
+
+# Optimization — remove if unused
+PuLP
