@@ -18,7 +18,19 @@ c. Access to tech stack
  
  ### 4. Supply Chain Logic 
  
-Explain the planning rules, calculations or decisions used. 
+The core decision is a deterministic reconciliation, not an LLM judgment:
+1. Select the business date. Use the actual delivery date if it is present and trusted. If the invoice only contains an invoice date, mark that as a fallback and confirm that the contract uses invoice date for price selection. The date basis must be configurable and documented.
+2. Find the applicable price. Match the normalized SKU, supplier/price list, currency, unit of measure, and any required location against a reference-price record whose validity period includes the selected date:
+   effective_from <= selected_date <= effective_to
+3. Calculate the expected line amount. For a simple unit-price case:
+   expected_line_amount = invoice_quantity × agreed_unit_price
+   If the invoice has a different billing unit, pack conversion, discount, tax, or freight treatment, apply a separately defined rule before comparing. Do not silently assume those components are included in the agreed price.
+4. Calculate variance.
+   unit_price_variance = invoiced_unit_price − agreed_unit_price
+   amount_variance = invoiced_line_amount − expected_line_amount
+   Positive amount variance means the invoice is higher than the reference calculation; negative variance means it is lower. Currency rounding should be applied consistently at the business-approved precision.
+5. Assign a review outcome. Flag a price discrepancy when the absolute variance exceeds a configured tolerance. Treat missing/ambiguous matches, invalid quantities, currency/UOM mismatches, and low-confidence extraction as exceptions rather than as zero variance.
+The tolerance should account for permitted rounding and contract terms. Until stakeholders define it, the prototype should expose the tolerance as a configuration value and label results as exploratory. A reviewer should confirm the contract, receipt, tax/discount treatment, and any approved exceptions before raising or rejecting a claim.
  
  ### 5. Approach 
  
